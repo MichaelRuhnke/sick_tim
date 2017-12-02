@@ -62,6 +62,14 @@ add_executable(sick_mrs1000
   src/sick_mrs1000_parser.cpp)
 target_link_libraries(sick_mrs1000 sick_tim_3xx)
 
+add_executable(sick_mrs6000
+  src/sick_mrs6000.cpp
+  src/sick_mrs1000_communication.cpp
+  src/sick_tim_common_tcp.cpp
+  src/scan_and_cloud_parser.cpp
+  src/sick_mrs6000_parser.cpp)
+target_link_libraries(sick_mrs6000 sick_tim_3xx)
+
 add_executable(sick_tim_datagram_test
     test/sick_tim_datagram_test.cpp
     src/sick_tim310s01_parser.cpp
@@ -78,6 +86,7 @@ install(
         sick_tim310_1130000m01
         sick_tim551_2050001
         sick_mrs1000
+        sick_mrs6000
         sick_tim_datagram_test
     RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 
