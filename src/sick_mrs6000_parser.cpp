@@ -193,6 +193,10 @@ int SickMRS6000Parser::parse_datagram(char* datagram, size_t datagram_length, Si
     scan.time_increment = override_time_increment_;
   }
 
+  // 21: scale factor
+  float scale_factor = 1.0;
+  sscanf(fields[21], "%x", &scale_factor);
+
   // 23: Starting angle (FFF92230)
   int starting_angle = -1;
   sscanf(fields[23], "%x", &starting_angle);
@@ -252,7 +256,7 @@ int SickMRS6000Parser::parse_datagram(char* datagram, size_t datagram_length, Si
     }
     unsigned short range;
     sscanf(fields[j + 26], "%hx", &range);
-    float range_meter = range / 1000.0;
+    float range_meter = scale_factor * range / 1000.0;
     scan.ranges[j - index_min] = range_meter;
 
     *x_iter = range_meter * sin(M_PI_2 - alpha) * cos(phi);
