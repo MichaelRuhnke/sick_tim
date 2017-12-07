@@ -234,6 +234,9 @@ int SickMRS6000Parser::parse_datagram(char* datagram, size_t datagram_length, Si
   double phi = scan.angle_min;
   double alpha = (-layer/ 200.0) * M_PI / 180.0;
 
+  if(layer == 237){ //Layer 1 for MRS 6000
+    layer_count_ = 0;
+  }
   // first layer
   // order of layers: 0, -250, 250, -500
   if(layer_count_ == 0){
