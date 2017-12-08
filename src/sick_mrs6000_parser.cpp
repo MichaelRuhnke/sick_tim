@@ -195,7 +195,7 @@ int SickMRS6000Parser::parse_datagram(char* datagram, size_t datagram_length, Si
 
   // 21: scale factor
   float scale_factor = 1.0;
-  sscanf(fields[21], "%x", &scale_factor);
+  sscanf(fields[21], "%f", &scale_factor);
 
   // 23: Starting angle (FFF92230)
   int starting_angle = -1;
